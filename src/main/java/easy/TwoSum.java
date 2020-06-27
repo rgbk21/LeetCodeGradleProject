@@ -21,10 +21,12 @@ class TwoSum {
         //Adding duplicate keys overwrites the value with the latest added values
         //Remember that if the key already exists, then adding another value for the same key will also return the
         //previous values
-        Hashtable<String, Integer> ht = new Hashtable<>();
-        ht.put("One", 1);
-        ht.put("One", 2);
-        for(Map.Entry<String, Integer> entry : ht.entrySet()){
+
+        System.out.println("\nThis example shows that multiple values cannot be associated with the same key in a hash table or a hash map");
+        Hashtable<String, String> ht = new Hashtable<>();
+        ht.put("key1", "value1");
+        ht.put("key1", "value2");
+        for(Map.Entry<String, String> entry : ht.entrySet()){
             System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
