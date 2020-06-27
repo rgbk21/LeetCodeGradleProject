@@ -1,5 +1,8 @@
 package easy;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
@@ -13,6 +16,8 @@ class TwoSum {
 
     public static void main(String[] args) {
 
+        //https://www.baeldung.com/java-map-duplicate-keys
+
         //Adding duplicate keys overwrites the value with the latest added values
         //Remember that if the key already exists, then adding another value for the same key will also return the
         //previous values
@@ -20,8 +25,7 @@ class TwoSum {
         ht.put("One", 1);
         ht.put("One", 2);
         for(Map.Entry<String, Integer> entry : ht.entrySet()){
-            System.out.println("Key: " + entry.getKey());
-            System.out.println("Value: " + entry.getValue());
+            System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
         //Mapping multiple values to the same key in Maps using the Apache Commons Library
@@ -33,20 +37,46 @@ class TwoSum {
         System.out.println("\nThis example shows that multiple values can be associated with the same key in MultiValuedMap");
         System.out.println("Also because we are storing the values in an ArrayListValuedHashMap, we can store the SAME value multiple times. \nAllows duplicates.");
         for (Map.Entry<String, String> entry : multiValuedArrayListMap.entries()){
-            System.out.println("Key: " + entry.getKey());
-            System.out.println("Values: " + entry.getValue());
+            System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
-        System.out.println("\nThis is storing multiple values for the same key, but using HashSetValuedHashMap");
+        System.out.println("\nHashSetValuedHashMap is storing multiple values for the same key, but using HashSetValuedHashMap");
         System.out.println("This will not allow duplicate values to be stored in the map");
+        System.out.println("Also the order of insertion will not be maintained");
         MultiValuedMap<String, String> multiValuedHashSetMap = new HashSetValuedHashMap<>();
+        multiValuedHashSetMap.put("key1", "value3");
         multiValuedHashSetMap.put("key1", "value1");
         multiValuedHashSetMap.put("key1", "value2");
         multiValuedHashSetMap.put("key1", "value2");
 
         for (Map.Entry<String, String> entry : multiValuedHashSetMap.entries()){
-            System.out.println("Key: " + entry.getKey());
-            System.out.println("Values: " + entry.getValue());
+            System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
+        }
+
+        //Multiple values for the same key using the Google Guava library
+
+        //ArrayListMultimap, which uses a HashMap backed by an ArrayList for every value:
+        System.out.println("\nArrayListMultimap example shows that multiple values can be associated with the same key - using Guava");
+        System.out.println("This should enable us to store duplicate values in ArrayList associated with the key");
+        Multimap<String, String> multiArrayListMap = ArrayListMultimap.create();
+        multiArrayListMap.put("key1", "value1");
+        multiArrayListMap.put("key1", "value2");
+        multiArrayListMap.put("key1", "value2");
+
+        for(Map.Entry<String, String> entry : multiArrayListMap.entries()){
+            System.out.println("<" + entry.getKey() + ">, " + "<" + entry.getValue() + ">");
+        }
+
+        System.out.println("\nLinkedHashMultimap does not let us store duplicate values for the same key");
+        System.out.println("However it does store the natural order in which the elements were inserted into the hashMap");
+        Multimap<String, String> multiLinkedHashMap = LinkedHashMultimap.create();
+        multiLinkedHashMap.put("key1", "value3");
+        multiLinkedHashMap.put("key1", "value1");
+        multiLinkedHashMap.put("key1", "value2");
+        multiLinkedHashMap.put("key1", "value2");
+
+        for(Map.Entry<String, String> entry : multiLinkedHashMap.entries()){
+            System.out.println("<" + entry.getKey() + ">, " + "<" + entry.getValue() + ">");
         }
     }
 
