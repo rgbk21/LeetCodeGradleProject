@@ -25,7 +25,7 @@ class TwoSum {
         System.out.println("\nThis example shows that multiple values cannot be associated with the same key in a hash table or a hash map");
         Hashtable<String, String> ht = new Hashtable<>();
         ht.put("key1", "value1");
-        ht.put("key1", "value2");
+        ht.put("key1", "value3");
         for(Map.Entry<String, String> entry : ht.entrySet()){
             System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
