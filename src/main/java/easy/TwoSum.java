@@ -1,0 +1,101 @@
+package easy;
+
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
+class TwoSum {
+
+    public static void main(String[] args) {
+
+        //Adding duplicate keys overwrites the value with the latest added values
+        //Remember that if the key already exists, then adding another value for the same key will also return the
+        //previous values
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        ht.put("One", 1);
+        ht.put("One", 2);
+        for(Map.Entry<String, Integer> entry : ht.entrySet()){
+            System.out.println("Key: " + entry.getKey());
+            System.out.println("Value: " + entry.getValue());
+        }
+
+        //Mapping multiple values to the same key in Maps using the Apache Commons Library
+        MultiValuedMap<String, String> multiValuedArrayListMap = new ArrayListValuedHashMap<>();
+        multiValuedArrayListMap.put("key1", "value1");
+        multiValuedArrayListMap.put("key1", "value2");
+        multiValuedArrayListMap.put("key1", "value2");
+
+        System.out.println("\nThis example shows that multiple values can be associated with the same key in MultiValuedMap");
+        System.out.println("Also because we are storing the values in an ArrayListValuedHashMap, we can store the SAME value multiple times. \nAllows duplicates.");
+        for (Map.Entry<String, String> entry : multiValuedArrayListMap.entries()){
+            System.out.println("Key: " + entry.getKey());
+            System.out.println("Values: " + entry.getValue());
+        }
+
+        System.out.println("\nThis is storing multiple values for the same key, but using HashSetValuedHashMap");
+        System.out.println("This will not allow duplicate values to be stored in the map");
+        MultiValuedMap<String, String> multiValuedHashSetMap = new HashSetValuedHashMap<>();
+        multiValuedHashSetMap.put("key1", "value1");
+        multiValuedHashSetMap.put("key1", "value2");
+        multiValuedHashSetMap.put("key1", "value2");
+
+        for (Map.Entry<String, String> entry : multiValuedHashSetMap.entries()){
+            System.out.println("Key: " + entry.getKey());
+            System.out.println("Values: " + entry.getValue());
+        }
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+        int[] myArray = new int[2];
+        for (int i = 0; i < nums.length; i++){
+            for (int j = i+1; j < nums.length; j++){
+                int sum = nums[i] + nums[j];
+                if(sum == target){
+                    return new int[] {i,j};
+                }
+            }
+        }
+        return myArray;
+    }
+
+    public int[] twoSum_hashMap(int[] nums, int target) {
+
+        int[] myArray = new int[2];
+        Map<Integer, Integer> hashCopy = new HashMap<>();
+
+        for(int i = 0; i < nums.length; i++){
+            hashCopy.put(nums[i], i);
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            if(hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i){
+                return new int[] {i, hashCopy.get(target - nums[i])};
+            }
+        }
+
+        return myArray;
+    }
+
+    public int[] twoSum_hashTable(int[] nums, int target) {
+
+        int[] myArray = new int[2];
+        Hashtable<Integer, Integer> hashCopy = new Hashtable<>();
+
+        for(int i = 0; i < nums.length; i++){
+            hashCopy.put(nums[i], i);
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            if(hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i){
+                return new int[] {i, hashCopy.get(target - nums[i])};
+            }
+        }
+
+        return myArray;
+    }
+}
