@@ -17,6 +17,7 @@ class TwoSum {
     public static void main(String[] args) {
 
         //https://www.baeldung.com/java-map-duplicate-keys
+        //https://github.com/google/guava/wiki/NewCollectionTypesExplained
 
         //Adding duplicate keys overwrites the value with the latest added values
         //Remember that if the key already exists, then adding another value for the same key will also return the
