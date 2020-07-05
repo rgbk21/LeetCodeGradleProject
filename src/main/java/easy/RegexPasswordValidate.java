@@ -12,6 +12,9 @@ public class RegexPasswordValidate {
      * Iterate through each line of input.
      */
 
+    //https://rubular.com/
+    //https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
+
     public static final String INVALID = "invalid";
     public static final String WEAK = "weak";
     public static final String MEDIUM = "medium";
@@ -23,12 +26,12 @@ public class RegexPasswordValidate {
         String line;
         while ((line = in.readLine()) != null) {
 
-            if (line.length() < 6 || line.length() > 25){
+            if (line.length() < 6 || line.length() > 25) {
                 System.out.println(INVALID);
                 return;
             }
 
-            for (Character c : line.toCharArray()){
+            for (Character c : line.toCharArray()) {
                 if (c < '\u0021' || c > '\u007A') {
                     System.out.println(INVALID);
                     return;
@@ -38,7 +41,6 @@ public class RegexPasswordValidate {
             String checkIfStrong = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\\[\\]\\\\!\"#$%&'()*+,-./:;<>=?@^_`]).{10,}$";
             String checkIfMedium = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$";
             String checkIfMediumWithSpecChar = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\\[\\]\\\\!\"#$%&'()*+,-./:;<>=?@^_`]).{8,}$";
-
 
             if (Pattern.matches(checkIfStrong, line)) {
                 System.out.println(STRONG);
