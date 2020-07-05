@@ -7,7 +7,6 @@ public class RemoveElement {
     }
 
     /*
-
     A very convoluted way of NOT doing something...
 
     public static int removeElement(int[] nums, int val) {
@@ -27,8 +26,6 @@ public class RemoveElement {
         }
         return writeIdx-1;
     }
-
-
     */
 
     public static int removeElement(int[] nums, int val) {

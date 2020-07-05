@@ -16,8 +16,6 @@ public class Overflow {
         //silent overflow
         byte myByte = (byte) (12 * 10 + 7 + 1);
         System.out.println("myByte: "+ myByte);
-
-
     }
 
 }
