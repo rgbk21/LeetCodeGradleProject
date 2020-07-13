@@ -1,4 +1,4 @@
-package LambdaExpressions.Example;
+package LambdaExpressions.F_Example;
 
 import java.util.ArrayList;
 import java.util.List;

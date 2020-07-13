@@ -1,4 +1,4 @@
-package LambdaExpressions.Example;
+package LambdaExpressions.F_Example;
 
 import com.google.common.base.MoreObjects;
 
@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static LambdaExpressions.Example.Gender.MALE;
-import static LambdaExpressions.Example.Gender.FEMALE;
+import static LambdaExpressions.F_Example.Gender.MALE;
+import static LambdaExpressions.F_Example.Gender.FEMALE;
 
 public class Person {
 

@@ -1,7 +1,7 @@
-package LambdaExpressions.Example;
+package LambdaExpressions.F_Example;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class FunctionUtilTest {
 
@@ -30,6 +30,19 @@ public class FunctionUtilTest {
         FunctionUtil.forEachItem(onlyMales, person -> person.setDateOfBirth(person.getDateOfBirth().plusYears(1)));
         System.out.println("\nMales only after adding 1 year to DOB:");
         FunctionUtil.forEachItem(personsList, p -> System.out.println(p));
-    }
 
+        //getPersons is a static method, and hence can be also written using a method reference
+        //Method signature of getPersons is: public static List<Person> getPersons()
+        //So it takes no arguments as input and returns a List<Person>
+        System.out.println("\nUsing a method reference to generate the list");
+        Supplier<List<Person>> listOfPersons = Person::getPersons;
+        List<Person> personList = listOfPersons.get();
+        FunctionUtil.forEachItem(personList, p -> System.out.println(p));
+
+        //Writing the same thing using the lambda expression would be
+        System.out.println("\nUsing a lambda expression to generate the list");
+        Supplier<List<Person>> listSupplier = () -> Person.getPersons();
+        List<Person> personList2 = listSupplier.get();
+        FunctionUtil.forEachItem(personList, p -> System.out.println(p));
+    }
 }

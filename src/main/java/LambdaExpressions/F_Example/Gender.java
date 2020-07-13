@@ -1,4 +1,4 @@
-package LambdaExpressions.Example;
+package LambdaExpressions.F_Example;
 
 public enum Gender {
 
