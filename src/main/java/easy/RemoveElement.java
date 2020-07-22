@@ -3,7 +3,7 @@ package easy;
 public class RemoveElement {
 
     public static void main(String[] args) {
-        removeElement(new int[] {0,1,2,2,3,0,4,2}, 2);
+        removeElement2(new int[] {0,1,2,2,3,0,4,2}, 2);
     }
 
     /*
@@ -37,6 +37,23 @@ public class RemoveElement {
             }
         }
         return i;
+    }
+
+    public static int removeElement2(int[] nums, int val) {
+
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int idx = 0;
+
+        for (int i : nums) {
+            if (i != val) {
+                nums[idx++] = i;
+            }
+        }
+        return idx;
+
     }
 
 }

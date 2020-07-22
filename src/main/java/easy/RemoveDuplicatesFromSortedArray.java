@@ -24,4 +24,24 @@ public class RemoveDuplicatesFromSortedArray {
         return lastUniqueIdx + 1;
     }
 
+    public static int removeDuplicates2(int[] nums){
+
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int lastUniqueElement = nums[0];
+        int idx = 1;
+
+        for (int i : nums){
+            if (i != lastUniqueElement){
+                lastUniqueElement = i;
+                nums[idx++] = i;
+            }
+        }
+
+        return idx;
+
+    }
+
 }
