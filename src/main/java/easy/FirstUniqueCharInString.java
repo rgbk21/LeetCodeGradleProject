@@ -98,5 +98,25 @@ public class FirstUniqueCharInString {
         return -1;
     }
 
+    public static int firstUniqChar_5(String s) {
+
+        Map<Character, Integer> charMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            Character currentChar = s.charAt(i);
+            charMap.merge(currentChar, 1, (prevValue, value) -> prevValue + 1);
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            Character currentChar = s.charAt(i);
+            if (charMap.get(currentChar) == 1) {
+                return i;
+            }
+        }
+
+        return -1;
+
+    }
+
 
 }

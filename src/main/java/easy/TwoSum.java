@@ -131,4 +131,33 @@ class TwoSum {
 
         return myArray;
     }
+
+    public int[] twoSum_practice1(int[] nums, int target){
+
+        if (nums == null || nums.length == 0) {
+            return new int [] {-1, -1};
+        }
+
+        Map<Integer, Integer> num_index = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            num_index.put(nums[i], i);
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+
+            int currNum = nums[i];
+            int complement = target - currNum;
+
+            Integer idx = num_index.get(complement);
+
+            if (idx != null && idx != i) {
+                return new int [] {i, idx};
+            }
+
+        }
+
+        return new int [] {-1, -1};
+    }
+
 }
