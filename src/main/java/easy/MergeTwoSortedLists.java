@@ -24,7 +24,7 @@ public class MergeTwoSortedLists {
         list2_3.next = list2_4;
         list2_4.val = 4;
 
-        mergeTwoLists(list1_1, list2_1);
+        mergeTwoLists_2(list1_1, list2_1);
     }
 
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -93,23 +93,36 @@ public class MergeTwoSortedLists {
 
     }
 
+    public static ListNode mergeTwoLists_2(ListNode l1, ListNode l2){
+
+        ListNode dummyHead = new ListNode();
+        ListNode curr = dummyHead;
+
+        while (l1 != null && l2 != null) {
+
+            if (l1.val <= l2.val) {
+                curr.next = l1;
+                l1 = l1.next;
+            } else {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+
+            curr = curr.next;
+        }
+
+        if (l1 == null) {
+            curr.next = l2;
+        } else if (l2 == null){
+            curr.next = l1;
+        }
+
+        return dummyHead.next;
+
+    }
+
 
 }
 
 
-class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
