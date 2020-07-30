@@ -10,6 +10,7 @@ public class AddBinary {
 
     }
 
+    //BAAAAAAAD
     public static String addBinary(String a, String b) {
 
         int carry = 0;
@@ -34,6 +35,43 @@ public class AddBinary {
 
 
         return sb.reverse().toString();
+    }
+
+    //OKKKKKKKKK...
+    public static String addBinary_2(String a, String b){
+
+        StringBuilder result = new StringBuilder();
+
+        String a_reverse = new StringBuilder(a).reverse().toString();
+        String b_reverse = new StringBuilder(b).reverse().toString();
+
+        int idx = 0;
+        int carry = 0;
+        int sum = 0;
+
+        while (idx < a_reverse.length() || idx < b_reverse.length()) {
+
+            Integer x = idx < a_reverse.length() ? Character.getNumericValue(a_reverse.charAt(idx)) : 0;
+            Integer y = idx < b_reverse.length() ? Character.getNumericValue(b_reverse.charAt(idx)) : 0;
+
+            sum = x + y + carry;
+
+            if (sum >= 2) {
+                carry = 1;
+                result.append(sum % 2);
+            } else {
+                carry = 0;
+                result.append(sum);
+            }
+
+            idx++;
+        }
+
+        if (carry == 1) {
+            result.append(1);
+        }
+
+        return result.reverse().toString();
     }
 
 
