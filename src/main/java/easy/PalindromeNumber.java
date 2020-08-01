@@ -2,6 +2,8 @@ package easy;
 
 public class PalindromeNumber {
 
+    //https://leetcode.com/problems/palindrome-number/
+
     public static void main(String[] args) {
         PalindromeNumber.isPalindrome(1221);
     }

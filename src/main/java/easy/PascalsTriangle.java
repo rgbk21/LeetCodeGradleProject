@@ -7,6 +7,8 @@ import java.util.List;
 
 public class PascalsTriangle {
 
+    //https://leetcode.com/problems/pascals-triangle/
+
     public static void main(String[] args) {
 
         generate(5);

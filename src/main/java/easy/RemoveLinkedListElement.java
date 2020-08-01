@@ -2,6 +2,8 @@ package easy;
 
 public class RemoveLinkedListElement {
 
+    //https://leetcode.com/problems/remove-linked-list-elements/
+
     public static void main(String[] args) {
 
 

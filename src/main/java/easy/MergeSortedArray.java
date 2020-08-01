@@ -71,4 +71,31 @@ public class MergeSortedArray {
         }
     }
 
+    public static void merge_3 (int[] nums1, int m, int[] nums2, int n){
+
+        int idx1 = m - 1, j = n - 1;
+        int writeIdx = m + n - 1;
+
+        for ( ; idx1 >= 0 && j >= 0; ) {
+
+            if (nums1[idx1] >= nums2[j]) {
+                nums1[writeIdx--] = nums1[idx1--];
+            } else {
+                nums1[writeIdx--] = nums2[j--];
+            }
+
+        }
+
+        if (idx1 >= 0) {
+            for ( ; idx1 >= 0; idx1--) {
+                nums1[writeIdx--] = nums1[idx1];
+            }
+        } else if (j >= 0) {
+            for ( ; j >= 0; j--) {
+                nums1[writeIdx--] = nums2[j];
+            }
+        }
+
+    }
+
 }

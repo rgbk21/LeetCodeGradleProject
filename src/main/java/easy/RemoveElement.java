@@ -2,6 +2,8 @@ package easy;
 
 public class RemoveElement {
 
+    //https://leetcode.com/problems/remove-element/
+
     public static void main(String[] args) {
         removeElement2(new int[] {0,1,2,2,3,0,4,2}, 2);
     }
