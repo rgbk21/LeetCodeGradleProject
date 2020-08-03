@@ -22,7 +22,7 @@ public class ReorderDataInLogFiles {
 
         for (String s : logs) {
 
-            String[] myArray = s.split(" ", 2 );
+            String[] myArray = s.split("\\s", 2 );
 
             int checkIdx = s.indexOf(' ') + 1;
             char checkChar = s.charAt(checkIdx);
