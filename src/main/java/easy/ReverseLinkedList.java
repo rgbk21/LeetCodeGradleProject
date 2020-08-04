@@ -2,6 +2,8 @@ package easy;
 
 public class ReverseLinkedList {
 
+    //https://leetcode.com/problems/reverse-linked-list/
+
     public static void main(String[] args) {
 
     }
