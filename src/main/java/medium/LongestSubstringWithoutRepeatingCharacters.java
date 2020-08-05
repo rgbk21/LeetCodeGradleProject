@@ -5,7 +5,7 @@ import java.util.*;
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public static void main(String[] args) {
-        lengthOfLongestSubstring_4("tmmzuxt");
+        lengthOfLongestSubstring_5("tmmzuxt");
     }
 
     public static int lengthOfLongestSubstring(String s) {
@@ -127,6 +127,48 @@ public class LongestSubstringWithoutRepeatingCharacters {
             map.put(currentChar, j + 1);
         }
         return ans;
+    }
+
+    //
+    public static int lengthOfLongestSubstring_5(String s){
+
+        Map<Character, Integer> charMap = new HashMap<>();
+
+        int leftIdx = 0;
+        int rightIdx = 0;
+        int windowSize = 0;
+        int overallMax = 0;
+
+        while (rightIdx < s.length()) {
+
+            //tmmzuxt
+
+            Character currChar = s.charAt(rightIdx);
+
+            if (!charMap.containsKey(currChar)) {
+                charMap.put(currChar, rightIdx);
+                rightIdx++;
+                windowSize++;
+                overallMax = Math.max(windowSize, overallMax);
+            } else {
+                int prevIdx = charMap.get(currChar);
+                if (prevIdx < leftIdx) {
+                    rightIdx++;
+                    windowSize++;
+                    overallMax = Math.max(windowSize, overallMax);
+                    charMap.put(currChar, rightIdx);
+                } else {
+                    overallMax = Math.max(windowSize, overallMax);
+                    leftIdx = prevIdx + 1;
+                    windowSize = rightIdx - leftIdx + 1;
+                    charMap.put(currChar, rightIdx);
+                    rightIdx++;
+                }
+            }
+        }
+
+        return overallMax;
+
     }
 
 }
