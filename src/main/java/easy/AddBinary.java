@@ -2,6 +2,8 @@ package easy;
 
 public class AddBinary {
 
+    //https://leetcode.com/problems/add-binary/
+
     public static void main(String[] args) {
 
         String str1 = "111";
