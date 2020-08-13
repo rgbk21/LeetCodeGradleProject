@@ -37,6 +37,11 @@ public class SquaresOfASortedArray {
             }
         }
 
+        //TODO: Note that the check for idx < 0 is not really required over here.
+        //The check in the while loop of idx2 < A.length is going to take care that we do no execute
+        //the code in the case that idx1 < 0. Makes sense?
+        //The same holds for the second else if check as well.
+
         if (idx1 < 0) {
             while (idx2 < A.length) {
                 result[writeIdx++] = A[idx2++];
