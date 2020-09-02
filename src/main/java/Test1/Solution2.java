@@ -52,7 +52,6 @@ public class Solution2 {
             if (e.getKey() < sets.get(i-1).getValue()) {
                 if (e.getValue() > sets.get(i-1).getValue()) {
                     sets.remove(i-1);
-                    sets.add()
                 }
             }
 
@@ -63,7 +62,7 @@ public class Solution2 {
 
 
 
-
+        return result;
 
     }
     // METHOD SIGNATURE ENDS
