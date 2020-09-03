@@ -39,5 +39,31 @@ public class RemoveLinkedListElement {
         return dummyHead;
     }
 
+    public static ListNode removeElements2(ListNode head, int val){
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+
+            if (curr.val == val && prev != null) {
+                prev.next = curr.next;
+                curr = curr.next;
+            } else if (curr.val == val && prev == null) {
+                head = curr.next;
+                curr = curr.next;
+            } else {
+                prev = curr;
+                curr = curr.next;
+            }
+
+        }
+
+        return head;
+
+
+
+    }
+
 }
 
