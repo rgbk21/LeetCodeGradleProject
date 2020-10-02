@@ -1,5 +1,8 @@
 package Test1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestClass {
 
     public static void main(String[] args) {
@@ -10,5 +13,16 @@ public class TestClass {
          */
 
         InterfaceA.InterfaceB myInterface = InterfaceA.getInterfaceB();
+
+        Thread t1 = new Thread(() -> System.out.println("In Run method"));
+
+
+
+        Map<String, Integer> myMap = new HashMap<>();
+
+        myMap.forEach((k, v) -> {
+            System.out.println("Key:" + k);
+            System.out.println("Value:" + v);
+        });
     }
 }

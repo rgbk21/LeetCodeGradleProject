@@ -1,12 +1,52 @@
 package medium;
 
+// TODO:
+// Coin change problem. Need I say more?
+
 public class CoinChange {
 
     public static void main(String[] args) {
+        CoinChange c = new CoinChange();
+        c.coinChange(new int[] {2}, 3);
+    }
+
+    //New method
+    // coins: [1,3,5]
+    // coinCount: [0, 1, 2, 1, 2, 1, 2, 7, 8, 9, 10]
+    public int coinChange(int[] coins, int amount){
+
+        int[] coinCount = new int[amount + 1];
+
+        for (int i = 1; i < coinCount.length; i++) {
+            coinCount[i] = amount + 1;
+        }
+
+        for (int i = 0; i < coins.length; i++) {
+            if (coins[i] < amount) {
+                coinCount[coins[i]] = 1;
+            }
+        }
+
+        for (int i = 0; i < coinCount.length; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (i - coins[j] >= 0) {
+                    coinCount[i] = Math.min(coinCount[i], coinCount[i-coins[j]] + 1);
+                }
+            }
+        }
+
+        return coinCount[amount] > amount ? -1 : coinCount[amount];
+
+
 
     }
 
-    public int coinChange(int[] coins, int amount) {
+
+
+
+    // Old method that did not work
+
+    public int coinChange_old(int[] coins, int amount) {
 
         int[] reqrdNumOfCoins = new int[amount + 1];
 
