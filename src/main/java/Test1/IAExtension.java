@@ -5,3 +5,7 @@ public interface IAExtension extends InterfaceA{
 
 
 }
+
+interface IAExtension2 /* implements InterfaceA */ {
+
+}

@@ -9,7 +9,7 @@ public class Buffer {
         this.empty = true;
     }
 
-    public synchronized void produce(int newData) {
+    public void produce(int newData) {
 
         // Wait until the buffer is empty
         while(!this.empty) {
@@ -33,7 +33,7 @@ public class Buffer {
         System.out.println("Produced:" + newData);
     }
 
-    public synchronized int consume() {
+    public int consume() {
 
         // Wait until the buffer gets some data
         while(this.empty) {

@@ -15,7 +15,7 @@ public class RemovingElementsFromMap {
 
         //Proper way to delete objects from a collection
         Iterator<Map.Entry<String, Integer>> myIter = myMap.entrySet().iterator();
-        while (myIter.hasNext()) {//The loop could be replaced with Collection.removeIf
+        while (myIter.hasNext()) { //The loop could be replaced with Collection.removeIf
             Map.Entry<String, Integer> myEntry2 = myIter.next();
             if(myEntry2.getKey().equals("A")){
                 myIter.remove();//This will remove <A,1> from myMap
