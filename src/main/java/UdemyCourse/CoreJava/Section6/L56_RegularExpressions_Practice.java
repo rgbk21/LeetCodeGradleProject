@@ -18,6 +18,14 @@ public class L56_RegularExpressions_Practice {
         String s5 = s4.replaceAll("\\s+", " ");
         System.out.println("Edited String is:" + s5); // prints:  aa bbb c d e ff
 
+        boolean isValid = true;
+        convertToFalse(isValid);
+        System.out.println(isValid);
     }
+
+    private static void convertToFalse(boolean isValid) {
+        isValid = false;
+    }
+
 
 }

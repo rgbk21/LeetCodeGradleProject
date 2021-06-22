@@ -30,6 +30,36 @@ public class PascalsTriangle {
 
         List<List<Integer>> result = new ArrayList<>();
 
+        for (int i = 0; i < numRows; i++) {
+            if (i == 0) {
+                result.add(Collections.singletonList(1));
+            } else if (i == 1) {
+                result.add(Arrays.asList(1,1));
+            } else {
+                List<Integer> level = new ArrayList<>();
+
+                for (int j = 0; j < i + 1 ; j++) {
+                    if (j == 0) {
+                        level.add(1);
+                    } else if (j == i) {
+                        level.add(1);
+                    } else {
+                        level.add(result.get(i-1).get(j-1) + result.get(i-1).get(j));
+                    }
+                }
+
+                result.add(level);
+            }
+
+
+        }
+        return result;
+    }
+
+    public static List<List<Integer>> generate_v0(int numRows) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
         if (numRows == 0) {
             return result;
         }

@@ -19,7 +19,7 @@ public class CalleeImpl implements Callee {
 
     public static void main(String[] args) {
 
-        Callee callee = new CalleeImpl_v2();
+        Callee callee = new CalleeImpl();
 
         Object i = 12;
         Object s = "foobar";

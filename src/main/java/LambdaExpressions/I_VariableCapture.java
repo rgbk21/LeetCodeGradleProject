@@ -8,7 +8,7 @@ public class I_VariableCapture {
 
         //Ok Scenario
         final String msg1 = "Hello"; // msg1 is final
-        AnotherPrinter printer1 = msg -> System.out.println(msg1 + " " + msg);
+        Printer printer1 = msg -> System.out.println(msg1 + " " + msg);
 
         //Ok Scenario
         String msg2 = "Hello"; // msg2 is effectively final
@@ -38,11 +38,38 @@ public class I_VariableCapture {
             //msg5 = "Hi " + msg; // A compile-time error. Attempting to modify msg.
             System.out.println(msg5);
         };
+
+        I_VariableCapture capture = new I_VariableCapture();
+
+        Printer lambdaFn1 = capture.createLambdaFn(100);
+        lambdaFn1.print("Hello World #1"); // Hello World #1 :: 100
+        lambdaFn1.print("Hello World #2"); // Hello World #2 :: 200
+        lambdaFn1.print("Hello World #3"); // Hello World #3 :: 300
+
+        Printer lambdaFn2 = capture.createLambdaFn(1);
+        lambdaFn2.print("Hello World #1"); // Hello World #1 :: 301
+        lambdaFn2.print("Hello World #2"); // Hello World #2 :: 302
+        lambdaFn2.print("Hello World #3"); // Hello World #3 :: 303
+
+        I_VariableCapture capture2 = new I_VariableCapture();
+        Printer lambdaFn3 = capture2.createLambdaFn(1);
+        lambdaFn3.print("Hello World #1"); // Hello World #1 :: 1
+        lambdaFn3.print("Hello World #2"); // Hello World #2 :: 2
+        lambdaFn3.print("Hello World #3"); // Hello World #3 :: 3
+
     }
 
+    private Printer createLambdaFn(int value){
+        Printer printer = msg -> {
+            // Note we are able to access the instance variable as well as change the value of the instance variable
+            counter += value;
+            System.out.println(msg + " :: " + counter);
+        };
+        return printer;
+    }
 }
 
 @FunctionalInterface
-interface AnotherPrinter{
+interface AnotherPrinter {
     void print(String msg);
 }
