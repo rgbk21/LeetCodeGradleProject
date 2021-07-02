@@ -4,6 +4,25 @@ public class LongestCommonPrefix {
 
     public static void main(String[] args) {
         LongestCommonPrefix.longestCommonPrefix(new String[] {"ca", "a"});
+        LongestCommonPrefix.longestCommonPrefix_v3(new String[] {"flower","flow","flight"});
+    }
+
+    public static String longestCommonPrefix_v3(String[] strs){
+
+        String longestCommonSbstr = strs[0];
+        for (int i = 0; i < strs.length - 1; i++) {
+            String leftStr = longestCommonSbstr;
+            String rightStr = strs[i+1];
+            int idx = 0;
+            while (idx < leftStr.length() && idx < rightStr.length() && leftStr.charAt(idx) == rightStr.charAt(idx)) {
+                idx++;
+            }
+            longestCommonSbstr = leftStr.substring(0, idx);
+            if (longestCommonSbstr.isEmpty()) return "";
+        }
+
+        return longestCommonSbstr;
+
     }
 
     //I don't even understand what I was doing over here>????!!!!

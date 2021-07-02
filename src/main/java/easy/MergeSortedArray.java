@@ -2,12 +2,45 @@ package easy;
 
 import java.util.Arrays;
 
+// https://leetcode.com/problems/merge-sorted-array/
 public class MergeSortedArray {
 
     public static void main(String[] args) {
-        int[] nums1 = new int[] {0};
-        int[] nums2 = new int[] {1};
+        int[] nums1 = new int[]{0};
+        int[] nums2 = new int[]{1};
         merge_2(nums1, 0, nums2, 1);
+    }
+
+    // Review: Note that we are seeing a new technique to traverse an array from the end that makes
+    // solving the problem much simpler.
+    public static void merge_v4(int[] nums1, int m, int[] nums2, int n) {
+
+        int nums1Idx = m - 1;
+        int nums2Idx = n - 1;
+        int writeIdx = m + n - 1;
+
+        while (nums1Idx >= 0 && nums2Idx >= 0) {
+            if (nums1[nums1Idx] < nums2[nums2Idx]) {
+                nums1[writeIdx] = nums2[nums2Idx];
+                nums2Idx--;
+            } else {
+                nums1[writeIdx] = nums1[nums1Idx];
+                nums1Idx--;
+            }
+            writeIdx--;
+        }
+
+        if (nums1Idx >= 0) {
+            while (nums1Idx >= 0) {
+                nums1[writeIdx] = nums1[nums1Idx];
+                writeIdx--; nums1Idx--;
+            }
+        } else if (nums2Idx >= 0) {
+            while (nums2Idx >= 0) {
+                nums1[writeIdx] = nums2[nums2Idx];
+                writeIdx--; nums2Idx--;
+            }
+        }
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -41,14 +74,13 @@ public class MergeSortedArray {
         }
 
 
-
     }
 
-    public static void merge_2 (int[] nums1, int m, int[] nums2, int n) {
+    public static void merge_2(int[] nums1, int m, int[] nums2, int n) {
 
         int idx1 = m - 1;
         int idx2 = n - 1;
-        int writeIdx = m+n-1;
+        int writeIdx = m + n - 1;
 
         while (idx1 >= 0 && idx2 >= 0) {
 
@@ -71,12 +103,12 @@ public class MergeSortedArray {
         }
     }
 
-    public static void merge_3 (int[] nums1, int m, int[] nums2, int n){
+    public static void merge_3(int[] nums1, int m, int[] nums2, int n) {
 
         int idx1 = m - 1, j = n - 1;
         int writeIdx = m + n - 1;
 
-        for ( ; idx1 >= 0 && j >= 0; ) {
+        for (; idx1 >= 0 && j >= 0; ) {
 
             if (nums1[idx1] >= nums2[j]) {
                 nums1[writeIdx--] = nums1[idx1--];
@@ -87,11 +119,11 @@ public class MergeSortedArray {
         }
 
         if (idx1 >= 0) {
-            for ( ; idx1 >= 0; idx1--) {
+            for (; idx1 >= 0; idx1--) {
                 nums1[writeIdx--] = nums1[idx1];
             }
         } else if (j >= 0) {
-            for ( ; j >= 0; j--) {
+            for (; j >= 0; j--) {
                 nums1[writeIdx--] = nums2[j];
             }
         }

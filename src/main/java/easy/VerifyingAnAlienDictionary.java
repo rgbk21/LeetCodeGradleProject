@@ -10,7 +10,45 @@ public class VerifyingAnAlienDictionary {
     public static void main(String[] args) {
 
         //"hello","leetcode"
+        // words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
 
+    }
+
+    public boolean isAlienSorted_v2(String[] words, String order){
+
+        HashMap<Character, Integer> orderIndex = new HashMap<>();
+
+        for (int i = 0; i < order.length(); i++){
+            orderIndex.put(order.charAt(i), i);
+        }
+
+        for (int i = 0; i < words.length - 1; i++){
+            String leftWord = words[i];
+            String rightWord = words[i+1];
+            boolean wordsAreInOrder = areTheTwoWordsLexicographic(leftWord, rightWord, orderIndex);
+            if (!wordsAreInOrder) return false;
+        }
+
+        return true;
+    }
+
+    private boolean areTheTwoWordsLexicographic(String leftWord, String rightWord, HashMap<Character, Integer> orderIndex) {
+
+        for (int i = 0; i < leftWord.length(); i++ ) {
+
+            if (i >= rightWord.length()) break;
+
+            if (orderIndex.get(leftWord.charAt(i)) < orderIndex.get(rightWord.charAt(i))){
+                return true;
+            } else if (orderIndex.get(leftWord.charAt(i)) > orderIndex.get(rightWord.charAt(i))){
+                return false;
+            }
+        }
+
+        if (leftWord.length() > rightWord.length()) {
+            return false;
+        }
+        return true;
     }
 
     public boolean isAlienSorted(String[] words, String order) {

@@ -6,6 +6,28 @@ public class AddStrings {
 
     public static void main(String[] args) {
 
+        String s1 = "12345";
+        String s2 = "145";
+    }
+
+    public String addStrings_v2(String num1, String num2){
+
+        StringBuilder result = new StringBuilder();
+        String s1 = new StringBuilder(num1).reverse().toString();
+        String s2 = new StringBuilder(num2).reverse().toString();
+        int carry = 0;
+        int idx = 0;
+
+        while (idx < s1.length() || idx < s2.length()) {
+            int s1Digit = idx < s1.length() ? Character.getNumericValue(s1.charAt(idx)) : 0;
+            int s2Digit = idx < s2.length() ? Character.getNumericValue(s2.charAt(idx)) : 0;
+            int sum = s1Digit + s2Digit + carry;
+            result.append(sum % 10);
+            carry = sum / 10;
+            idx++;
+        }
+
+        return carry == 0 ? result.reverse().toString() : result.append(1).reverse().toString();
     }
 
     public String addStrings(String num1, String num2) {

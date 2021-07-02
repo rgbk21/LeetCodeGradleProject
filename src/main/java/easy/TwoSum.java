@@ -7,11 +7,9 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
+// https://leetcode.com/problems/two-sum/
 class TwoSum {
 
     public static void main(String[] args) {
@@ -27,7 +25,7 @@ class TwoSum {
         Hashtable<String, String> ht = new Hashtable<>();
         ht.put("key1", "value1");
         ht.put("key1", "value2");
-        for(Map.Entry<String, String> entry : ht.entrySet()){
+        for (Map.Entry<String, String> entry : ht.entrySet()) {
             System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
@@ -39,7 +37,7 @@ class TwoSum {
 
         System.out.println("\nThis example shows that multiple values can be associated with the same key in MultiValuedMap");
         System.out.println("Also because we are storing the values in an ArrayListValuedHashMap, we can store the SAME value multiple times. \nAllows duplicates.");
-        for (Map.Entry<String, String> entry : multiValuedArrayListMap.entries()){
+        for (Map.Entry<String, String> entry : multiValuedArrayListMap.entries()) {
             System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
@@ -52,7 +50,7 @@ class TwoSum {
         multiValuedHashSetMap.put("key1", "value2");
         multiValuedHashSetMap.put("key1", "value2");
 
-        for (Map.Entry<String, String> entry : multiValuedHashSetMap.entries()){
+        for (Map.Entry<String, String> entry : multiValuedHashSetMap.entries()) {
             System.out.println("<" + entry.getKey() + ">" + "<" + entry.getValue() + ">");
         }
 
@@ -66,7 +64,7 @@ class TwoSum {
         multiArrayListMap.put("key1", "value2");
         multiArrayListMap.put("key1", "value2");
 
-        for(Map.Entry<String, String> entry : multiArrayListMap.entries()){
+        for (Map.Entry<String, String> entry : multiArrayListMap.entries()) {
             System.out.println("<" + entry.getKey() + ">, " + "<" + entry.getValue() + ">");
         }
 
@@ -78,18 +76,46 @@ class TwoSum {
         multiLinkedHashMap.put("key1", "value2");
         multiLinkedHashMap.put("key1", "value2");
 
-        for(Map.Entry<String, String> entry : multiLinkedHashMap.entries()){
+        for (Map.Entry<String, String> entry : multiLinkedHashMap.entries()) {
             System.out.println("<" + entry.getKey() + ">, " + "<" + entry.getValue() + ">");
         }
     }
 
+    public int[] twoSumAgainMap(int[] nums, int target) {
+        Map<Integer, Integer> allNumbers = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            allNumbers.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length - 1; i++) {
+            int numOne = nums[i];
+            int numTwo = target - numOne;
+            if (allNumbers.containsKey(numTwo) && allNumbers.get(numTwo) > i) {
+                return new int[]{i, allNumbers.get(numTwo)};
+            }
+        }
+        return new int[]{};
+    }
+
+    public int[] twoSumAgain(int[] nums, int target) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            int numOne = nums[i];
+            int numTwo = target - numOne;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (numTwo == nums[j]) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+
     public int[] twoSum(int[] nums, int target) {
         int[] myArray = new int[2];
-        for (int i = 0; i < nums.length; i++){
-            for (int j = i+1; j < nums.length; j++){
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
                 int sum = nums[i] + nums[j];
-                if(sum == target){
-                    return new int[] {i,j};
+                if (sum == target) {
+                    return new int[]{i, j};
                 }
             }
         }
@@ -101,13 +127,13 @@ class TwoSum {
         int[] myArray = new int[2];
         Map<Integer, Integer> hashCopy = new HashMap<>();
 
-        for(int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             hashCopy.put(nums[i], i);
         }
 
-        for(int i = 0; i < nums.length; i++){
-            if(hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i){
-                return new int[] {i, hashCopy.get(target - nums[i])};
+        for (int i = 0; i < nums.length; i++) {
+            if (hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i) {
+                return new int[]{i, hashCopy.get(target - nums[i])};
             }
         }
 
@@ -119,23 +145,23 @@ class TwoSum {
         int[] myArray = new int[2];
         Hashtable<Integer, Integer> hashCopy = new Hashtable<>();
 
-        for(int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             hashCopy.put(nums[i], i);
         }
 
-        for(int i = 0; i < nums.length; i++){
-            if(hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i){
-                return new int[] {i, hashCopy.get(target - nums[i])};
+        for (int i = 0; i < nums.length; i++) {
+            if (hashCopy.containsKey(target - nums[i]) && hashCopy.get(target - nums[i]) != i) {
+                return new int[]{i, hashCopy.get(target - nums[i])};
             }
         }
 
         return myArray;
     }
 
-    public int[] twoSum_practice1(int[] nums, int target){
+    public int[] twoSum_practice1(int[] nums, int target) {
 
         if (nums == null || nums.length == 0) {
-            return new int [] {-1, -1};
+            return new int[]{-1, -1};
         }
 
         Map<Integer, Integer> num_index = new HashMap<>();
@@ -152,12 +178,12 @@ class TwoSum {
             Integer idx = num_index.get(complement);
 
             if (idx != null && idx != i) {
-                return new int [] {i, idx};
+                return new int[]{i, idx};
             }
 
         }
 
-        return new int [] {-1, -1};
+        return new int[]{-1, -1};
     }
 
 }

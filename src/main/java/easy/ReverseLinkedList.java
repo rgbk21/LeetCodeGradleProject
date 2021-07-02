@@ -8,6 +8,21 @@ public class ReverseLinkedList {
 
     }
 
+    public ListNode reverseList_v3(ListNode head) {
+
+        ListNode curr = head;
+        ListNode nextNode;
+        ListNode temp = null;
+
+        while (curr != null) {
+            nextNode = curr.next;
+            curr.next = temp;
+            temp = curr;
+            curr = nextNode;
+        }
+        return temp;
+    }
+
     public ListNode reverseList(ListNode head) {
 
         ListNode curr = head;

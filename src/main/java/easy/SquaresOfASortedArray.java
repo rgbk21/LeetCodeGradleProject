@@ -1,5 +1,9 @@
 package easy;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class SquaresOfASortedArray {
 
     //https://leetcode.com/problems/squares-of-a-sorted-array/
@@ -7,6 +11,75 @@ public class SquaresOfASortedArray {
     public static void main(String[] args) {
 
     }
+
+    public int[] sortedSquares_v3(int[] arr) {
+
+        if (arr.length == 1) return computeSquaresOf(arr);
+
+        int firstPositiveElmntIdx = getInflectionPointInArr(arr);
+
+        // This is if all of the elements are in order
+        if (firstPositiveElmntIdx == 0 && arr[0] >= 0) {
+            return computeSquaresOf(arr);
+        } else if (firstPositiveElmntIdx == 0 && arr[0] < 0) {
+            int[] reverseArr = new int[arr.length];
+            for (int i = arr.length - 1, idx = 0; i >= 0; i--) {
+                reverseArr[idx++] = arr[i];
+            }
+            return computeSquaresOf(reverseArr);
+        }
+
+        // [-4,-1,0,3,10]
+        int leftIdx = firstPositiveElmntIdx - 1;
+        int rightIdx = firstPositiveElmntIdx;
+        int[] result = new int[arr.length];
+        int writeIdx = 0;
+
+        while (leftIdx >= 0 && rightIdx < arr.length) {
+            if (Math.abs(arr[leftIdx]) > arr[rightIdx]) {
+                result[writeIdx++] = arr[rightIdx] * arr[rightIdx];
+                rightIdx++;
+            } else {
+                result[writeIdx++] = arr[leftIdx] * arr[leftIdx];
+                leftIdx--;
+            }
+        }
+
+        if (rightIdx < arr.length) {
+            while (rightIdx < arr.length) {
+                result[writeIdx++] = arr[rightIdx] * arr[rightIdx];
+                rightIdx++;
+            }
+        } else if (leftIdx >= 0) {
+            while (leftIdx >= 0) {
+                result[writeIdx++] = arr[leftIdx] * arr[leftIdx];
+                leftIdx--;
+            }
+        }
+
+        return result;
+    }
+
+    private int[] computeSquaresOf(int[] arr) {
+        int[] squares = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            squares[i] = arr[i] * arr[i];
+        }
+        return squares;
+    }
+
+    private int getInflectionPointInArr(int[] arr) {
+        int firstPositiveElmntIdx = 0;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] < 0 && arr[i + 1] >= 0) {
+                firstPositiveElmntIdx = i + 1;
+            }
+        }
+
+        return firstPositiveElmntIdx;
+    }
+
 
     //This is the stupidity that you were doing earlier
     public int[] sortedSquares(int[] A) {
