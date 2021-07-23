@@ -13,6 +13,64 @@ public class AddBinary {
 
     }
 
+    public static String addBinary_v4(String a, String b){
+
+        String a_reversed = new StringBuilder(a).reverse().toString();
+        String b_reversed = new StringBuilder(b).reverse().toString();
+
+        StringBuilder sb = new StringBuilder();
+
+        int readIdx = 0;
+        int carry = 0;
+
+        while (readIdx < a.length() && readIdx < b.length()) {
+            int aVal = Character.getNumericValue(a_reversed.charAt(readIdx));
+            int bVal = Character.getNumericValue(b_reversed.charAt(readIdx));
+            int sum = aVal + bVal + carry;
+            if (sum > 1) {
+                carry = 1;
+            } else {
+                carry = 0;
+            }
+            sb.append(sum % 2);
+            readIdx++;
+        }
+
+        if (readIdx == a.length()) {
+            // we have to iterate over the string b in order to add the remaining elements
+            while (readIdx < b.length()) {
+                int bVal = Character.getNumericValue(b_reversed.charAt(readIdx));
+                int sum = bVal + carry;
+                if (sum > 1) {
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+                sb.append(sum % 2);
+                readIdx++;
+            }
+        } else if (readIdx == b.length()) {
+            // we have to iterate over the string a in order to add the remaining elements
+            while (readIdx < a.length()) {
+                int aVal = Character.getNumericValue(a_reversed.charAt(readIdx));
+                int sum = aVal + carry;
+                if (sum > 1) {
+                    carry = 1;
+                } else {
+                    carry = 0;
+                }
+                sb.append(sum % 2);
+                readIdx++;
+            }
+        }
+
+        // If carry is 1 after doing all of this then we need to separately add the carry as well
+        if (carry == 1) sb.append(1);
+
+        return sb.reverse().toString();
+    }
+
+
     //BAAAAAAAD
     public static String addBinary(String a, String b) {
 
@@ -135,6 +193,4 @@ public class AddBinary {
 
         return answer.reverse().toString();
     }
-
-
 }

@@ -26,6 +26,47 @@ public class PascalsTriangle {
 ]
      */
 
+    public static List<List<Integer>> generate_v3(int numRows) {
+
+        List<List<Integer>> result = new ArrayList<>();
+        if (numRows == 0) return result;
+        if (numRows == 1) {
+            result.add(new ArrayList<>());
+            result.get(0).add(1);
+            return result;
+        }
+        if (numRows == 2) {
+            result.add(new ArrayList<>());
+            result.add(new ArrayList<>());
+            result.get(0).add(1);
+            result.get(1).add(1);
+            result.get(1).add(1);
+            return result;
+        }
+
+        result.add(new ArrayList<>());
+        result.add(new ArrayList<>());
+        result.get(0).add(1);
+        result.get(1).add(1);
+        result.get(1).add(1);
+
+        for (int i = 2; i < numRows; i++) {
+            result.add(new ArrayList<>());
+            for (int j = 0; j < i + 1; j++) {
+                if (j == 0 || j == i) {
+                    result.get(i).add(1);
+                } else {
+                    List<Integer> upperLevel = result.get(i - 1);
+                    int sumOfUpperLevelEl = upperLevel.get(j-1) + upperLevel.get(j);
+                    result.get(i).add(sumOfUpperLevelEl);
+                }
+            }
+        }
+
+        return result;
+    }
+
+
     public static List<List<Integer>> generate(int numRows) {
 
         List<List<Integer>> result = new ArrayList<>();
@@ -34,17 +75,17 @@ public class PascalsTriangle {
             if (i == 0) {
                 result.add(Collections.singletonList(1));
             } else if (i == 1) {
-                result.add(Arrays.asList(1,1));
+                result.add(Arrays.asList(1, 1));
             } else {
                 List<Integer> level = new ArrayList<>();
 
-                for (int j = 0; j < i + 1 ; j++) {
+                for (int j = 0; j < i + 1; j++) {
                     if (j == 0) {
                         level.add(1);
                     } else if (j == i) {
                         level.add(1);
                     } else {
-                        level.add(result.get(i-1).get(j-1) + result.get(i-1).get(j));
+                        level.add(result.get(i - 1).get(j - 1) + result.get(i - 1).get(j));
                     }
                 }
 
@@ -84,14 +125,14 @@ public class PascalsTriangle {
 
         for (int i = 0; i < numRows; i++) {
 
-            List<Integer> list = new ArrayList<>(Collections.nCopies(i+1, 0));
+            List<Integer> list = new ArrayList<>(Collections.nCopies(i + 1, 0));
 
             for (int j = 0; j <= i; j++) {
                 if (j == 0 || j == i) {
                     list.set(j, 1);
                     continue;
                 }
-                list.set(j, (result.get(i-1).get(j-1) + result.get(i-1).get(j)));
+                list.set(j, (result.get(i - 1).get(j - 1) + result.get(i - 1).get(j)));
             }
             result.add(list);
         }

@@ -40,6 +40,23 @@ public class SymmetricTree {
 
     }
 
+    public boolean isSymmetric_review(TreeNode root){
+        if (root == null) return true;
+        boolean result = isMirrorImage_review(root.left, root.right);
+        return result;
+    }
+
+    private boolean isMirrorImage_review(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null) return true;
+        if (node1 == null || node2 == null) return false;
+
+        if (node1.val != node2.val) return false;
+        boolean left = isMirrorImage_review(node1.left, node2.right);
+        boolean right = isMirrorImage_review(node1.right, node2.left);
+        return left && right;
+    }
+
+
     // Recursive Solution
     public static boolean isSymmetric_v3(TreeNode root){
         return isMirrorImage(root.left, root.right);

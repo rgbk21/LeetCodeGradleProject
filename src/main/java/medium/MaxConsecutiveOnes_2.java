@@ -3,6 +3,7 @@ package medium;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/max-consecutive-ones/
 public class MaxConsecutiveOnes_2 {
 
     public static void main(String[] args) {
@@ -10,6 +11,26 @@ public class MaxConsecutiveOnes_2 {
     }
 
     //{1,0,1,1,0}
+
+    public int findMaxConsecutiveOnes_v3(int[] nums){
+
+        int overallMaxNumOfOnes = 0;
+        int currMaxNumOfOnes = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int currDigit = nums[i];
+            if (currDigit == 0) {
+                if (currMaxNumOfOnes > overallMaxNumOfOnes) {
+                    overallMaxNumOfOnes = currMaxNumOfOnes;
+                }
+                currMaxNumOfOnes = 0;
+            } else {
+                currMaxNumOfOnes++;
+            }
+        }
+
+        return Math.max(currMaxNumOfOnes, overallMaxNumOfOnes);
+    }
 
     public int findMaxConsecutiveOnes_2(int[] nums){
 

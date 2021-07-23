@@ -10,6 +10,29 @@ public class FirstUniqueCharInString {
         firstUniqChar_2("loveleetcode");
     }
 
+    public static int firstUniqChar_v6(String s) {
+
+        Map<Character, Integer> charCount = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            Character currChar = s.charAt(i);
+            Integer currCharCount = charCount.get(currChar);
+            if (currCharCount == null) {
+                charCount.put(currChar, 1);
+            } else {
+                charCount.put(currChar, ++currCharCount);
+            }
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            if (charCount.get(s.charAt(i)) == 1 ) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public static int firstUniqChar(String s) {
 
         Set<Character> allChars = new HashSet<>();

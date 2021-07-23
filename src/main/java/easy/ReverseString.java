@@ -15,7 +15,13 @@ public class ReverseString {
         int front = 0;
         int back = s.length - 1;
 
+        // Do not use the while loop condition as:
+        // while (front != back)
+        // Because you are simultaneously incremeting and decrementing the pointers.
+        // So there is a chance that they never become equal.
         while (front <= back) {
+            // Note the initialization of the temp variable here.
+            // Initialize char to this value if required.
             char temp = '\u0000';
             temp = s[front];
             s[front] = s[back];
@@ -24,5 +30,4 @@ public class ReverseString {
             back--;
         }
     }
-
 }

@@ -1,8 +1,6 @@
 package easy;
 
-import java.util.ArrayList;
-import java.util.List;
-
+// https://leetcode.com/problems/count-binary-substrings/
 public class CountBinarySubstrings {
 
     public static void main(String[] args) {

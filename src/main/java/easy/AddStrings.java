@@ -8,6 +8,10 @@ public class AddStrings {
 
         String s1 = "12345";
         String s2 = "145";
+        String s3 = "Alice";
+        StringBuilder sb = new StringBuilder(s3.charAt(0));
+        sb.append("S");
+        System.out.println(sb);
     }
 
     public String addStrings_v2(String num1, String num2){

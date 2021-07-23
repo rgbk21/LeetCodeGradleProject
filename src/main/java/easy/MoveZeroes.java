@@ -9,6 +9,26 @@ public class MoveZeroes {
         moveZeroes(nums);
     }
 
+    // [0,1,0,3,12]
+    // [1,3,12,3,12]
+    public static void moveZeroes_V3(int[] nums){
+
+        int readIdx = 0;
+        int writeIdx = 0;
+        while (readIdx < nums.length) {
+            int currNum = nums[readIdx];
+            if (currNum != 0) {
+                nums[writeIdx++] = nums[readIdx++];
+            } else {
+                readIdx++;
+            }
+        }
+
+        while (writeIdx < nums.length) {
+            nums[writeIdx++] = 0;
+        }
+    }
+
     public static void moveZeroes(int[] nums) {
 
         if (nums == null || nums.length == 0) {

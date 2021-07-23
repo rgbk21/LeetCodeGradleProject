@@ -5,11 +5,12 @@ import java.util.List;
 
 public class PlusOne {
 
-    //https://leetcode.com/problems/plus-one/
+    // https://leetcode.com/problems/plus-one/
 
     public static void main(String[] args) {
 
         int[] input = new int[]{4, 3, 2, 1};
+        Arrays.toString(input);
         plusOne(input);
 
     }

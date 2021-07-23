@@ -5,7 +5,39 @@ import java.util.*;
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public static void main(String[] args) {
-        lengthOfLongestSubstring_5("tmmzuxt");
+        lengthOfLongestSubstring_v6("abcabcbb");
+    }
+
+    public static int lengthOfLongestSubstring_v6(String s){
+
+        Set<Character> window = new HashSet<>();
+        int leftIdx = 0;
+        int rightIdx = 0;
+        int maxSubstrLen = 0;
+        int currSubstrLen = 0;
+
+        while(rightIdx < s.length() && leftIdx < s.length()) {
+
+            if (!window.contains(s.charAt(rightIdx))) {
+                window.add(s.charAt(rightIdx));
+                rightIdx++;
+                currSubstrLen = rightIdx - leftIdx;
+                if (currSubstrLen > maxSubstrLen) {
+                    maxSubstrLen = currSubstrLen;
+                }
+            } else {
+                char repeatedChar = s.charAt(rightIdx);
+                while(s.charAt(leftIdx) != repeatedChar) {
+                    window.remove(s.charAt(leftIdx));
+                    leftIdx++;
+                }
+                leftIdx++;
+                rightIdx++;
+            }
+        }
+
+        return maxSubstrLen;
+
     }
 
     public static int lengthOfLongestSubstring(String s) {

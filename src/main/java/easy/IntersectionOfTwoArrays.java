@@ -14,6 +14,31 @@ public class IntersectionOfTwoArrays {
 
     }
 
+    public static int[] intersect_v2(int[] nums1, int[] nums2) {
+
+        Set<Integer> set1 = new HashSet<>();
+        for (Integer num : nums1) {
+            set1.add(num);
+        }
+
+        Set<Integer> set2 = new HashSet<>();
+        for (Integer num : nums2) {
+            set2.add(num);
+        }
+
+        // Calculate intersection
+        set1.retainAll(set2);
+
+        // Return Values
+        int[] result = new int[set1.size()];
+        int idx = 0;
+        for (int num : set1) {
+            result[idx++] = num;
+        }
+        return result;
+
+    }
+
     public static int[] intersect(int[] nums1, int[] nums2) {
 
         Map<Integer, Integer> largerArrayAsMap = new HashMap<>();

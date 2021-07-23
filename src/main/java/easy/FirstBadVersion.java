@@ -1,11 +1,38 @@
 package easy;
 
-import java.util.Random;
-
+// https://leetcode.com/problems/first-bad-version/
 public class FirstBadVersion {
 
     public static void main(String[] args) {
 
+    }
+
+    public int firstBadVersion_v2(int n){
+
+        int left = 1;
+        int right = n;
+        int mid;
+
+        if (n == 1) return isBadVersion(n) ? 1 : -1;
+        if (n == 2) {
+            if (isBadVersion(1)) return 1;
+            if (isBadVersion(2)) return 2;
+        }
+
+        while (left + 1 < right) {
+            mid = left + (right - left) / 2;
+            boolean currVersionBad = isBadVersion(mid);
+            if (currVersionBad) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+
+        if (isBadVersion(left)) return left;
+        if (isBadVersion(right)) return right;
+
+        return -1;
     }
 
     // Review:

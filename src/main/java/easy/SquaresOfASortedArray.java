@@ -1,7 +1,6 @@
 package easy;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class SquaresOfASortedArray {
@@ -9,7 +8,49 @@ public class SquaresOfASortedArray {
     //https://leetcode.com/problems/squares-of-a-sorted-array/
 
     public static void main(String[] args) {
+        // Can I convert an int[] to a List<Integer>
+        int[] intArray = new int[]{-7,-3,2,3,11};
+        List<Integer> intList = Arrays.asList();
+        SquaresOfASortedArray squares = new SquaresOfASortedArray();
+        squares.sortedSquares_v4(intArray);
+    }
 
+    // You were trying to find out a way in which we do not have to write the remaining items in the loop once the index limit has been reached
+    // The test cases passs.
+    // But the code is comicly slow. This on runs faster than only 10% of other submissions.
+    // Then one below it runs faster than 100% of all submissions.
+    public int[] sortedSquares_v4(int[] arr) {
+
+        if (arr.length == 1) return computeSquaresOf(arr);
+
+        int firstPositiveElmntIdx = getInflectionPointInArr(arr);
+
+        // This is if all of the elements are in order
+        if (firstPositiveElmntIdx == 0 && arr[0] >= 0) {
+            return computeSquaresOf(arr);
+        } else if (firstPositiveElmntIdx == 0 && arr[0] < 0) {
+            int[] reverseArr = new int[arr.length];
+            for (int i = arr.length - 1, idx = 0; i >= 0; i--) {
+                reverseArr[idx++] = arr[i];
+            }
+            return computeSquaresOf(reverseArr);
+        }
+
+        // [-4,-1,0,3,10]
+        int leftIdx = firstPositiveElmntIdx - 1;
+        int rightIdx = firstPositiveElmntIdx;
+        int[] sortedArr = new int[arr.length];
+        int writeIdx = 0;
+
+        while (leftIdx >= 0 || rightIdx < arr.length) {
+            while (leftIdx >= 0 && (rightIdx >= arr.length || Math.abs(arr[leftIdx]) <= Math.abs(arr[rightIdx]))) {
+                sortedArr[writeIdx++] = arr[leftIdx--];
+            }
+            while (rightIdx < arr.length && (leftIdx < 0 || Math.abs(arr[rightIdx]) < Math.abs(arr[leftIdx]))) {
+                sortedArr[writeIdx++] = arr[rightIdx++];
+            }
+        }
+        return computeSquaresOf(sortedArr);
     }
 
     public int[] sortedSquares_v3(int[] arr) {

@@ -1,5 +1,8 @@
 package easy;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class LargestNumberAtleastTwiceOfOthers {
 
     public static void main(String[] args) {
@@ -29,7 +32,6 @@ public class LargestNumberAtleastTwiceOfOthers {
         }
 
         return maxIdx;
-
     }
 
 }

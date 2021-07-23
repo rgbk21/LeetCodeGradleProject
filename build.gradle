@@ -25,4 +25,11 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
     compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
 }
+
+test {
+    useJUnitPlatform()
+}
+
+

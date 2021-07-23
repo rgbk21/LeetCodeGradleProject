@@ -2,10 +2,36 @@ package easy;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CheckIfExists {
 
     public static void main(String[] args) {
+
+    }
+
+    public boolean checkIfExist_v3(int[] arr) {
+
+        Set<Integer> numbers = new HashSet<>();
+
+        int zeroCount = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0) zeroCount++;
+            if (arr[i] == 0 && zeroCount > 1) {
+                numbers.add(arr[i]);
+            } else if (arr[i] != 0) {
+                numbers.add(arr[i]);
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            int currNum = arr[i];
+            if (numbers.contains(currNum * 2)) {
+                return true;
+            }
+        }
+
+        return false;
 
     }
 
