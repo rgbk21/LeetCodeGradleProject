@@ -4,9 +4,13 @@ package Generics;
 public class Wrapper<T> {
 
     private T ref;
+    private T[] myArray;
 
     Wrapper(T ref) {
         this.ref = ref;
+        // This gives a warning
+        // Unchecked cast: 'java.lang.Object[]' to 'T[]'
+        myArray = (T[]) new Object[10];
     }
 
     public T getRef() {

@@ -40,6 +40,13 @@ public class FindPivotIndex {
         List<String> stringList = new ArrayList<>(Arrays.asList("Alice", "Bob", "Charlie", "Dave"));
         String[] strArray = stringList.toArray(String[]::new);
 
+        // You can add multiple null values to a List
+        List<String> listOfNulls = new ArrayList<>();
+        listOfNulls.add(null);
+        listOfNulls.add(null);
+        listOfNulls.add(null);
+        System.out.println("List of nulls: " + listOfNulls); // [null, null, null]
+
         // ********* REMOVING AN ELEMENT ************************************************************************************
 
         // Note that removing an element from a list has a time complexity of O(n).

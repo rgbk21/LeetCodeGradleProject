@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
+// Builder pattern for class hierarchies
 public abstract class Pizza {
 
     public enum Topping {HAM, MUSHROOM, ONION, PEPPER, SAUSAGE};
@@ -14,6 +15,7 @@ public abstract class Pizza {
         EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
 
         abstract Pizza build();
+
         // Subclasses must override this in order to return 'this'
         protected abstract T self();
 
@@ -88,6 +90,21 @@ class Calzone extends Pizza {
     }
 }
 
+class Test {
+
+    public static void main(String[] args) {
+
+        NYPizza pizza = new NYPizza.Builder(NYPizza.Size.SMALL)
+                .addTopping(Pizza.Topping.SAUSAGE)
+                .addTopping(Pizza.Topping.ONION)
+                .build();
+
+        Calzone calzone = new Calzone.Builder()
+                .addTopping(Pizza.Topping.HAM)
+                .sauceInside()
+                .build();
+    }
+}
 
 
 
