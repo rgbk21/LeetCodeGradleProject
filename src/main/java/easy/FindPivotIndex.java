@@ -99,6 +99,28 @@ public class FindPivotIndex {
         Collections.reverse(list4);
         System.out.println("After reversing the list: " + list4); // [10, 7, 6, 5, 4, 2, 1]
 
+        // ********* SWAPPING ELEMENTS IN THE LIST ************************************************************************************
+        System.out.println("Original list: " + list4); // [10, 7, 6, 5, 4, 2, 1]
+        List<Integer> list6 = new ArrayList<>(list4);
+        Collections.swap(list6, 2, 5);
+        System.out.println("List after swapping elements at idx 2 and 5: " + list6); // [10, 7, 2, 5, 4, 6, 1]
+
+        // ********* ROTATING ELEMENTS OF THE LIST ************************************************************************************
+        /*
+        Rotating involves moving all elements of a List forward or backward by a distance.
+        Suppose you have a List as [a, b, c, d].
+        If you rotate this List by a distance of 1, the resulting List becomes [d, a, b, c].
+        If you rotate the [a, b, c, d] list by a distance of 2, the List becomes [c, d, a, b].
+        You can also rotate a List backwards by using a negative distance. If you rotate the [a, b, c, d] list by a distance of -2, the List becomes [c, d, a, b].
+         */
+        System.out.println("Original list: " + list4); // [10, 7, 6, 5, 4, 2, 1]
+        List<Integer> list7 = new ArrayList<>(list4);
+        Collections.rotate(list7, 3);
+        System.out.println("Rotate list4 by a distance of 3: " + list7); // [4, 2, 1, 10, 7, 6, 5]
+        List<Integer> list8 = new ArrayList<>(list4);
+        Collections.rotate(list8, -2);
+        System.out.println("Rotate list4 by a distance of -2: " + list8); // [6, 5, 4, 2, 1, 10, 7]
+
         // ********* FINDING MIN AND MAX IN THE LIST ************************************************************************************
         // You can directly find the min and the max in the list
         int minEl = Collections.min(list5);

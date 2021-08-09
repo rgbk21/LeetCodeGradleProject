@@ -47,9 +47,7 @@ public class TestPriorityQueues {
         System.out.println(comparatorQueue.poll()); // Person{id=4, name='Ken'}
         System.out.println(comparatorQueue.poll()); // Person{id=2, name='Richard'}
         System.out.println(comparatorQueue.poll()); // null
-
     }
-
 }
 
 class ComparablePerson extends Person implements Comparable<ComparablePerson> {
