@@ -1,9 +1,11 @@
-package JoshuaBloch.Chapter3.Item11;
+package JoshuaBloch.Chapter3.Item13;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PhoneNumber {
+// Not implementing the clone() method in this class.
+// Refer the code from Effective Java Repo
+public class PhoneNumber implements Cloneable {
 
     private final short areaCode, prefix, lineNum;
 
@@ -40,16 +42,6 @@ public class PhoneNumber {
 class TestClass {
 
     public static void main(String[] args) {
-        Map<PhoneNumber, String> phoneNumbers = new HashMap<>();
 
-        // Add a phone number to the map
-        PhoneNumber key = new PhoneNumber(707, 876, 9990);
-        phoneNumbers.put(key, "Alice");
-
-        String nameWhenSearchWithNewObj = phoneNumbers.get(new PhoneNumber(707,876,9990));
-        String nameWhenSearchWithKey = phoneNumbers.get(key);
-        // Now both of these methods correctly return 'Alice'
-        System.out.println("Found Name: " + nameWhenSearchWithNewObj); // Alice
-        System.out.println("Found Name: " + nameWhenSearchWithKey); // Alice
     }
 }
