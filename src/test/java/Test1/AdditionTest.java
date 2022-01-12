@@ -2,6 +2,7 @@ package Test1;
 
 import static org.mockito.Mockito.mock;
 
+import Test1.RandomStuff.Addition;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
