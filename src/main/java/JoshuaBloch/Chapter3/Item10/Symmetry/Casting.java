@@ -59,6 +59,10 @@ public class Casting {
         // For the code to compile, BOTH TYPES SHOULD BE IN THE SAME INHERITANCE TREE.
 //        String str = (String) cat3; // Inconvertible types; cannot cast 'JoshuaBloch.Chapter3.Item10.Symmetry.Animal' to 'java.lang.String'
 
+        // But this does not produce a compile error. But it does give you this warning:
+        // Casting 'cat3' to 'Dog' will produce 'ClassCastException' for any non-null value
+        // And sure enough, when we run this, this generates an exception
+        Dog someDog = (Dog) cat3;
     }
 }
 
