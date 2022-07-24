@@ -1,6 +1,6 @@
 package Test1.RandomStuff;
 
-public class ShadowTest {
+class ShadowTest {
 
     public int x = 0;
 
