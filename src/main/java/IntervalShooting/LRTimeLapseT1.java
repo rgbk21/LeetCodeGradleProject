@@ -18,6 +18,8 @@ public class LRTimeLapseT1 {
   private final Map<Integer, Map<Slider, Double>> result = new HashMap<>();
 
   public void changeSetting(Slider sliderName, double fromValue, double toValue, double inStepsOf, int fromImageNumber, int toImageNumber) {
+    if (Double.compare(fromValue, toValue) == 0) return;
+
     double numberOfImages = toImageNumber - fromImageNumber + 1;
     int numOfChangesRequired = (int) ((toValue - fromValue) / inStepsOf);
     int makeChangesEveryThisManyImages = (int) Math.round(numberOfImages / Math.abs(numOfChangesRequired));
