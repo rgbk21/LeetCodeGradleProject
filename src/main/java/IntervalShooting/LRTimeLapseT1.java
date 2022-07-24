@@ -8,6 +8,7 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static IntervalShooting.Slider.*;
 
@@ -42,18 +43,20 @@ public class LRTimeLapseT1 {
       changeSetting(key, value.get(0), value.get(1), key.getStepChangeValue(), fromImageNumber, toImageNumber);
     }
 
-    ImmutableSortedMap<Integer, Map<Slider, Double>> sortedResults = new ImmutableSortedMap
+    ImmutableSortedMap<Integer, Map<Slider, Double>> sortedResultsByImageNumber = new ImmutableSortedMap
         .Builder<Integer, Map<Slider, Double>>(Ordering.natural())
         .putAll(result).build();
 
-    for (Map.Entry<Integer, Map<Slider, Double>> entry: sortedResults.entrySet()){
-      System.out.println(entry);
+    for (Map.Entry<Integer, Map<Slider, Double>> entry: sortedResultsByImageNumber.entrySet()){
+      Integer imageNumber = entry.getKey();
+      Map<Slider, Double> value = entry.getValue();
+      TreeMap<Slider, Double> sortedSliders = new TreeMap<>(value);
+      System.out.println(imageNumber + ": " +  sortedSliders);
     }
   }
 
   public static void main(String[] args) {
     LRTimeLapseT1 settings = new LRTimeLapseT1();
-//    settings.changeSetting(Slider.DEHAZE, 20, 1, 235, 270, 235);
 
     Map<Slider, List<Double>> inputData = Map.ofEntries(
         Map.entry(EXPOSURE, List.of(/* fromValue*/ 0.30, /* toValue*/ 0.20)),
